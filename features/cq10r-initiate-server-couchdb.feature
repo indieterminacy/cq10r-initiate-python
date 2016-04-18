@@ -23,5 +23,25 @@ from couchdb import Server
 #
 #
 #
+    @initiating @couchdb @servers @requests
+    Scenario: Initiate CouchDB server and Requests
+        Given CouchDB, Requests and relevant modules loaded in Python code
+        When Server called
+        Then Server active
+
+        Examples:
 server = Server()
 # couch = couchdb.Server()
+#
+import couchdb
+import couchdbreq
+from couchdbreq import Server, Session
+import requests
+
+# Define connection config. see: http://docs.python-requests.org/en/latest/api/#requests-defaults
+# config = {
+#   'max_retries': 3,
+#   'pool_connections': 30, # Connection pool size
+# }
+# session = Session(config=config, timeout=30) # 30 second timeout on http-queries
+server = Server("http://127.0.0.1:5984")
